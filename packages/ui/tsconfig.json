@@ -1,5 +1,5 @@
 {
-  "extends": "@repo/typescript-config/library.json",
+  "extends": "@bumblebee/typescript-config/library.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }

@@ -1,12 +1,16 @@
 {
-  "name": "@repo/tailwind-config",
-  "version": "0.0.0",
+  "name": "@bumblebee/tailwind-config",
+  "version": "0.0.1",
   "private": true,
-  "exports": {
-    ".": "./tailwind.config.ts"
-  },
+  "main": "index.ts",
+  "types": "index.ts",
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
     "tailwindcss": "3.3.6"
+  },
+  "dependencies": {
+    "tailwind-merge": "2.1.0",
+    "@tailwindcss/forms": "0.5.7",
+    "@tailwindcss/typography": "0.5.10",
+    "tailwindcss-animate": "1.0.7"
   }
 }

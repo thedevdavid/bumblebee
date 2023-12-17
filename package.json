@@ -2,19 +2,28 @@
   "name": "bumblebee",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "lint-staged-husky": "lint-staged",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md,mdx,js,jsx}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,mdx,js,jsx}\"",
+    "update-dependencies": "turbo update-dependencies && pnpm dlx npm-check-updates -u"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@bumblebee/eslint-config": "workspace:*",
+    "@bumblebee/typescript-config": "workspace:*",
+    "@commitlint/cli": "18.4.3",
+    "@commitlint/config-conventional": "18.4.3",
+    "commitizen": "4.3.0",
+    "husky": "8.0.3",
+    "lint-staged": "15.2.0",
     "prettier": "3.1.1",
+    "prettier-plugin-organize-imports": "3.2.4",
     "prettier-plugin-tailwindcss": "0.5.9",
-    "turbo": "1.11.1"
+    "turbo": "1.11.2"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {

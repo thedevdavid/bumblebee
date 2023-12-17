@@ -34,3 +34,12 @@ yarn-error.log*
 
 # ui
 dist/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# miscellaneous
+.react-email
+.contentlayer
+.vscode
