@@ -1,0 +1,14 @@
+{
+  "name": "@bumblebee/database",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "supabase status || supabase start",
+    "start": "supabase status || supabase start",
+    "reset": "supabase db reset || supabase start",
+    "test": "supabase db test",
+    "lint": "supabase db lint",
+    "lint:report": "supabase db lint",
+    "deploy": "supabase db push"
+  }
+}

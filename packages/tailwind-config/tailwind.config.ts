@@ -1,5 +1,6 @@
 import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
+import { fontFamily } from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
 
@@ -21,6 +22,9 @@ const config: Omit<Config, "content"> = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

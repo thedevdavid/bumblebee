@@ -10,7 +10,7 @@
     "type-check": "turbo type-check",
     "clean": "turbo clean",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx,js,jsx}\"",
-    "update-dependencies": "turbo update-dependencies && pnpm dlx npm-check-updates -u"
+    "update-dependencies": "turbo update-dependencies && pnpm dlx npm-check-updates -ws --root"
   },
   "devDependencies": {
     "@bumblebee/eslint-config": "workspace:*",

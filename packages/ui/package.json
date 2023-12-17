@@ -12,8 +12,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint src/",
-    "check-types": "tsc --noEmit",
-    "update-dependencies": "pnpm dlx npm-check-updates -u"
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@bumblebee/eslint-config": "workspace:*",

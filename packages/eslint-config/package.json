@@ -2,9 +2,6 @@
   "name": "@bumblebee/eslint-config",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "update-dependencies": "pnpm dlx npm-check-updates -u"
-  },
   "devDependencies": {
     "@vercel/style-guide": "5.1.0",
     "eslint-config-next": "14.0.4",

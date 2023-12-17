@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Bumblebee",
@@ -16,13 +21,13 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      ></body> */}
-      <body className={inter.className}>{children}</body>
+      <Toaster className="dark:hidden" />
+      <Toaster theme="dark" className="hidden dark:block" />
+      <body
+        className={`min-h-screen overflow-x-hidden bg-background font-sans text-foreground antialiased w-screen ${inter.variable}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
