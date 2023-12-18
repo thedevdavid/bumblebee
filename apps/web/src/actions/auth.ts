@@ -5,8 +5,8 @@ import { redirect } from "next/navigation";
 
 import { FormResponse } from "@/types/index";
 
-import { magicLinkSchema } from "@/schema/auth";
 import { createClient } from "@/lib/supabase/server";
+import { magicLinkSchema } from "@/schema/auth";
 
 export const signInWithMagicLink = async (
   prevState: FormResponse,
@@ -36,7 +36,7 @@ export const signInWithMagicLink = async (
     email: parse.data.email,
     options: {
       shouldCreateUser: true,
-      emailRedirectTo: `${origin}/dashboard`,
+      emailRedirectTo: `${origin}/app/dashboard`,
     },
   });
 

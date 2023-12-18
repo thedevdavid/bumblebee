@@ -19,11 +19,15 @@ export const getCurrentUserWithProfile = async () => {
 
   const { data: userData } = await supabase.auth.getUser();
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("profiles")
     .select("*")
     .eq("id", userData.user?.id)
     .single();
+
+  if (error) {
+    console.log(error);
+  }
 
   return { data, userData };
 };
