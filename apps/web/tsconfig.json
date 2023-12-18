@@ -7,7 +7,8 @@
       "@/types/*": ["types/*"],
       "@/components/*": ["components/*"],
       "@/schema/*": ["schema/*"],
-      "@/actions/*": ["actions/*"]
+      "@/actions/*": ["actions/*"],
+      "@/styles/*": ["styles/*"]
     },
     "plugins": [
       {

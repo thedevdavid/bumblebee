@@ -31,7 +31,7 @@ export function MagicAuthForm() {
           autoCorrect="off"
         />
         {/* <Turnstile siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || 'You forgot to set Turnstile Site Key'} /> */}
-        <SubmitButton idleText="Get Login Link" />
+        <SubmitButton>Get Login Link</SubmitButton>
         {state?.message
           ? state.success
             ? toast.success(state.message)
