@@ -9,6 +9,7 @@
     "test": "supabase db test",
     "lint": "supabase db lint",
     "lint:report": "supabase db lint",
-    "deploy": "supabase db push"
+    "deploy": "supabase db push",
+    "db:type-gen": "pnpm dlx supabase gen types typescript --local --schema public > ../../apps/web/src/types/db.ts"
   }
 }

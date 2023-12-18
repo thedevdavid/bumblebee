@@ -8,7 +8,13 @@ export const getUserSession = async () => {
 
   const {
     data: { session },
+    error,
   } = await supabase.auth.getSession();
+
+  if (error) {
+    console.log(error);
+    return null;
+  }
 
   return session;
 };
@@ -19,14 +25,11 @@ export const getCurrentUserWithProfile = async () => {
 
   const { data: userData } = await supabase.auth.getUser();
 
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", userData.user?.id)
-    .single();
+  const { data, error } = await supabase.from("profiles").select("*").single();
 
   if (error) {
     console.log(error);
+    return null;
   }
 
   return { data, userData };

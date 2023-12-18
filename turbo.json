@@ -18,6 +18,7 @@
       "dependsOn": ["^lint"]
     },
     "type-check": {},
+    "db:type-gen": {},
     "dev": {
       "cache": false,
       "persistent": true

@@ -8,6 +8,7 @@
     "lint": "turbo lint --filter=!react-email-client",
     "lint-staged-husky": "lint-staged",
     "type-check": "turbo type-check",
+    "db:type-gen": "turbo db:type-gen",
     "clean": "turbo clean",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx,js,jsx}\"",
     "update-dependencies": "turbo update-dependencies && pnpm dlx npm-check-updates -ws --root"
