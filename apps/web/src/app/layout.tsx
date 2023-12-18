@@ -1,7 +1,14 @@
-import type { Metadata } from "next";
+// organize-imports-ignore
+import "./globals.css";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
-import "./globals.css";
+import { Providers } from "@/components/providers";
+
+// import "@bumblebee/ui/dist/index.css";
+import { cn } from "@/lib/utils";
+import siteMetadata from "@/lib/metadata";
+import { BackTopButton } from "@/components/back-to-top";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,8 +17,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Bumblebee",
-  description: "Those bees deserve a nicer hive.",
+  title: siteMetadata.title,
+  description: siteMetadata.description,
+};
+
+export const viewport: Viewport = {
+  themeColor: "hsl(var(--primary))",
 };
 
 export default function RootLayout({
@@ -21,12 +32,18 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Toaster className="dark:hidden" />
-      <Toaster theme="dark" className="hidden dark:block" />
       <body
-        className={`min-h-screen overflow-x-hidden bg-background font-sans text-foreground antialiased w-screen ${inter.variable}`}
+        className={cn(
+          inter.variable,
+          "bg-background text-foreground min-h-screen overflow-x-hidden font-sans antialiased",
+        )}
       >
-        {children}
+        <Providers>
+          <Toaster richColors position="top-right" theme="light" />
+          {children}
+
+          <BackTopButton />
+        </Providers>
       </body>
     </html>
   );

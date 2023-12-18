@@ -17,10 +17,6 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "@bumblebee/types#generate": {
-      "dependsOn": ["@bumblebee/supabase#start", "^generate"],
-      "outputs": []
-    },
     "type-check": {},
     "dev": {
       "cache": false,

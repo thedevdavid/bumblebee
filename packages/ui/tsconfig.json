@@ -1,5 +1,10 @@
 {
   "extends": "@bumblebee/typescript-config/library.json",
   "include": ["."],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
   "exclude": ["dist", "build", "node_modules"]
 }

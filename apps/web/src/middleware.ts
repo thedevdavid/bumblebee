@@ -38,14 +38,11 @@ export async function middleware(request: NextRequest) {
   if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
     const { data } = await supabase.auth.getSession(); // refresh session token
 
-    console.log("session in middleware");
-    console.log(data);
-
     if (!data.session && !path.startsWith("/auth")) {
       return NextResponse.redirect(new URL("/auth/signin", request.url));
     } else if (data.session) {
       if (path.startsWith("/auth")) {
-        return NextResponse.redirect(new URL("/", request.url));
+        return NextResponse.rewrite(new URL("/", request.url));
       }
     }
     return NextResponse.rewrite(

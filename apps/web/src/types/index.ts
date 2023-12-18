@@ -20,4 +20,5 @@ export interface MobileLinkProps extends LinkProps {
 export type FormResponse = {
   success: boolean | null;
   message: string | null;
+  data?: any;
 };

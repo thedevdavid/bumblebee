@@ -30,7 +30,7 @@ const siteMetadata: SiteMetaData = {
     default: defaultTitle,
   },
   description: defaultDescription,
-  defaultTheme: "system",
+  defaultTheme: "light",
 };
 
 export default siteMetadata;

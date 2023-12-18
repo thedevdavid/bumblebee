@@ -1,4 +1,4 @@
-function PaletteIcon({ className }: { className?: string }) {
+export default function PaletteIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -25,5 +25,3 @@ function PaletteIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
-export default PaletteIcon;

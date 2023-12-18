@@ -1,18 +1,13 @@
 import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
-import { fontFamily } from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 // We want each package to be responsible for its own content.
 const config: Omit<Config, "content"> = {
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
   theme: {
     container: {
       center: true,
@@ -83,4 +78,5 @@ const config: Omit<Config, "content"> = {
   },
   plugins: [forms, typography, animate],
 };
+
 export default config;

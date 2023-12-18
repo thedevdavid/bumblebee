@@ -8,9 +8,9 @@ import { useFormStatus } from "react-dom";
 import { Button, cn } from "@bumblebee/ui";
 
 export function SubmitButton({
-  idleText = "Submit",
+  children,
   ...props
-}: HTMLAttributes<HTMLButtonElement> & { idleText: string }) {
+}: HTMLAttributes<HTMLButtonElement>) {
   const { pending } = useFormStatus();
 
   return (
@@ -24,7 +24,7 @@ export function SubmitButton({
       {pending ? (
         <CircleDashedIcon className="mr-2 h-4 w-4 animate-spin" />
       ) : (
-        idleText
+        children
       )}
     </Button>
   );

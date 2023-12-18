@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
-import { Input, Label } from "@bumblebee/ui";
 import { createClient } from "@/lib/supabase/server";
+import { Input, Label } from "@bumblebee/ui";
 
 // TODO: Server actions, form state, etc.
 export default async function ResetPasswordPage() {
@@ -24,8 +24,8 @@ export default async function ResetPasswordPage() {
   };
   return (
     <form action={changePassword}>
-      <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt className="text-sm font-medium text-muted-foreground">
+      <div className="px-4 py-5">
+        <dt className="text-muted-foreground text-sm font-medium">
           <Label>What&apos;s your email?</Label>
         </dt>
         <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
