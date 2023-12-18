@@ -59,5 +59,5 @@ export const signOut = async () => {
     await supabase.auth.signOut();
   }
 
-  return redirect("/");
+  return redirect("/signed-out");
 };

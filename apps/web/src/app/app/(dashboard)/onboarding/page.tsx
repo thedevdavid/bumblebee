@@ -1,14 +1,16 @@
+import { getUserSession } from "@/actions/user";
 import { Wizard } from "./_components/wizard";
 
-export default function OnboardingPage({
+export default async function OnboardingPage({
   searchParams,
 }: {
   searchParams: { step: "1" | "2" | "3" | "4" };
 }) {
-  // TODO: if user hasn't completed onboarding, redirect to step 1
-  // if (searchParams.step !== "1") {
-  //   return redirect("/onboarding?step=1");
-  // }
+  const session = await getUserSession();
 
-  return <Wizard />;
+  if (!session) {
+    return null;
+  }
+
+  return <Wizard userId={session?.user.id} />;
 }

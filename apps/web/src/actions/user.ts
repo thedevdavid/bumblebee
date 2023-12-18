@@ -12,6 +12,7 @@ export const getUserSession = async () => {
   } = await supabase.auth.getSession();
 
   if (error) {
+    console.log("getUserSession error");
     console.log(error);
     return null;
   }
@@ -28,11 +29,12 @@ export const getCurrentUserWithProfile = async () => {
   const { data, error } = await supabase.from("profiles").select("*").single();
 
   if (error) {
+    console.log("getCurrentUserWithProfile error");
     console.log(error);
     return null;
   }
 
-  return { data, userData };
+  return { data, userData: userData.user };
 };
 
 export const getUserProfile = async (userId: string) => {

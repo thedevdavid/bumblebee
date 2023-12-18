@@ -23,12 +23,13 @@ const initialState: FormResponse = {
   message: null,
 };
 
-export function Wizard() {
+export function Wizard({ userId }: { userId: string }) {
   const [publicationsState, publicationsFormAction] = useFormState(
     getPublicationsByApiKey,
     pubInitialState,
   );
-  const [state, formAction] = useFormState(addNewPublication, initialState);
+  const addPublicationWithId = addNewPublication.bind(null, userId);
+  const [state, formAction] = useFormState(addPublicationWithId, initialState);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams()!;

@@ -81,3 +81,16 @@ export interface DomainVerificationResponse {
     reason: string;
   }[];
 }
+
+export type BeehivePublications = {
+  data: {
+    id: string;
+    name: string;
+    referral_program_enabled: boolean;
+    created: number;
+  }[];
+  limit: number;
+  page: number;
+  total_results: number;
+  total_pages: number;
+};

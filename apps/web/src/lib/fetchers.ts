@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 
 import { createClient } from "@/lib/supabase/server";
 
+import { BeehivePublications } from "@/types/index";
 import { unstable_cache } from "next/cache";
 
 export async function getPublicationData(domain: string) {
@@ -28,7 +29,9 @@ export async function getPublicationData(domain: string) {
   )();
 }
 
-export async function getBeehiivPublications(beehiiv_api_key: string) {
+export async function getBeehiivPublications(
+  beehiiv_api_key: string,
+): Promise<BeehivePublications | null> {
   const beehiivPublications = await fetch(
     `https://api.beehiiv.com/v2/publications`,
     {

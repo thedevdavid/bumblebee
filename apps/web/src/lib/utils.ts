@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import color from "tinycolor2";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -18,6 +19,24 @@ export const capitalize = (s: string) => {
   if (typeof s !== "string") return "";
   return s.charAt(0).toUpperCase() + s.slice(1);
 };
+
+export function djb2(str: string) {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) + hash + str.charCodeAt(i);
+  }
+  return hash;
+}
+
+export function generateGradient(publicationName: string) {
+  const c1 = color({ h: djb2(publicationName) % 360, s: 0.95, l: 0.5 });
+  const second = c1.triad()[1].toHexString();
+
+  return {
+    fromColor: c1.toHexString(),
+    toColor: second,
+  };
+}
 
 export const truncate = (str: string, num: number) => {
   if (!str) return "";

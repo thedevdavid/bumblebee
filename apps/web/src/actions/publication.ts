@@ -16,6 +16,7 @@ import {
   validDomainRegex,
 } from "@/lib/domains";
 import { Tables } from "@/types/db";
+import { getUserSession } from "./user";
 
 const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
@@ -53,6 +54,7 @@ export const getPublications = async () => {
   const { data, error } = await supabase.from("publications").select("*");
 
   if (error) {
+    console.log("getPublication error");
     console.log(error);
     return null;
   }
@@ -103,9 +105,9 @@ export const addNewPublication = async (
     beehiiv_publication_id: formData.get("beehiiv_publication_id"),
     subdomain: formData.get("subdomain"),
     name: formData.get("name"),
-    logo: formData.get("logo"),
+    logo_path: formData.get("logo_path"),
+    og_image_path: formData.get("og_image_path"),
     template: formData.get("template"),
-    font: formData.get("font"),
     theme: formData.get("theme"),
   });
 
@@ -119,20 +121,27 @@ export const addNewPublication = async (
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
+  const session = await getUserSession();
+
+  if (!session) {
+    return {
+      success: false,
+      message: "You must be logged in to create a publication",
+    };
+  }
+
   const { data, error } = await supabase
     .from("publications")
-    .insert([
-      {
-        beehiiv_api_key: parse.data.beehiiv_api_key,
-        beehiiv_publication_id: parse.data.beehiiv_publication_id,
-        subdomain: parse.data.subdomain,
-        name: parse.data.name,
-        logo_url: parse.data.logo,
-        template: parse.data.template,
-        font: parse.data.font,
-        theme: parse.data.theme,
-      },
-    ])
+    .insert({
+      beehiiv_publication_id: parse.data.beehiiv_publication_id,
+      subdomain: parse.data.subdomain,
+      name: parse.data.name,
+      logo_path: "generate logo",
+      og_image_path: "generate_OG",
+      theme: parse.data.theme,
+      template: parse.data.template,
+      profile_id: session?.user.id,
+    })
     .select();
 
   await revalidateTag(
@@ -172,9 +181,9 @@ export const updatePublication = async (
     subdomain: formData.get("subdomain"),
     custom_domain: formData.get("custom_domain"),
     name: formData.get("name"),
-    logo: formData.get("logo"),
+    logo_path: formData.get("logo_path"),
+    og_image_path: formData.get("og_image_path"),
     template: formData.get("template"),
-    font: formData.get("font"),
     theme: formData.get("theme"),
   });
 

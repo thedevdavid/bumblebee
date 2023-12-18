@@ -5,13 +5,12 @@ import { LogoIcon } from "@bumblebee/ui";
 import {
   ArrowLeft,
   BarChart3,
+  CableIcon,
   Edit3,
-  FileCode,
   Github,
   Globe,
   Layout,
   LayoutDashboard,
-  Megaphone,
   Menu,
   Newspaper,
   Settings,
@@ -26,40 +25,40 @@ import { ReactNode, useEffect, useMemo, useState } from "react";
 
 const externalLinks = [
   {
-    name: "Read announcement",
-    href: "https://vercel.com/blog/platforms-starter-kit",
-    icon: <Megaphone width={18} />,
+    name: "BeeHiiv API Settings",
+    href: "https://app.beehiiv.com/settings/integrations/api",
+    icon: <CableIcon width={18} />,
   },
   {
     name: "Star on GitHub",
-    href: "https://github.com/vercel/platforms",
+    href: "https://github.com/thedevdavid/bumblebee",
     icon: <Github width={18} />,
   },
-  {
-    name: "Read the guide",
-    href: "https://vercel.com/guides/nextjs-multi-tenant-application",
-    icon: <FileCode width={18} />,
-  },
+  // {
+  //   name: "Read the guide",
+  //   href: "https://vercel.com/guides/nextjs-multi-tenant-application",
+  //   icon: <FileCode width={18} />,
+  // },
   {
     name: "View demo site",
-    href: "https://demo.vercel.pub",
+    href: "https://developreneur.trybumblebee.com",
     icon: <Layout width={18} />,
   },
-  {
-    name: "Deploy your own",
-    href: "https://vercel.com/templates/next.js/platforms-starter-kit",
-    icon: (
-      <svg
-        width={18}
-        viewBox="0 0 76 76"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="py-1 text-black dark:text-white"
-      >
-        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="currentColor" />
-      </svg>
-    ),
-  },
+  // {
+  //   name: "Deploy your own",
+  //   href: "https://vercel.com/templates/next.js/platforms-starter-kit",
+  //   icon: (
+  //     <svg
+  //       width={18}
+  //       viewBox="0 0 76 76"
+  //       fill="none"
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       className="py-1 text-black dark:text-white"
+  //     >
+  //       <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="currentColor" />
+  //     </svg>
+  //   ),
+  // },
 ];
 
 export default function Nav({ children }: { children: ReactNode }) {
@@ -174,12 +173,12 @@ export default function Nav({ children }: { children: ReactNode }) {
         } fixed z-10 flex h-full flex-col justify-between border-r border-stone-200 bg-stone-100 p-4 transition-all dark:border-stone-700 dark:bg-stone-900 sm:w-60 sm:translate-x-0`}
       >
         <div className="grid gap-2">
-          <div className="flex items-center space-x-2 rounded-lg px-2 py-1.5">
+          <div className="flex items-center space-x-2 rounded px-2 py-1.5">
             <a
               href="https://vercel.com/templates/next.js/platforms-starter-kit"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg p-1.5 hover:bg-stone-200 dark:hover:bg-stone-700"
+              className="rounded p-1.5 hover:bg-stone-200 dark:hover:bg-stone-700"
             >
               <svg
                 width="26"
@@ -197,9 +196,9 @@ export default function Nav({ children }: { children: ReactNode }) {
             <div className="h-6 rotate-[30deg] border-l border-stone-400 dark:border-stone-500" />
             <Link
               href="/"
-              className="rounded-lg p-2 hover:bg-stone-200 dark:hover:bg-stone-700"
+              className="rounded p-2 hover:bg-stone-200 dark:hover:bg-stone-700"
             >
-              <LogoIcon className="h-6 w-6 dark:scale-110 dark:rounded-full dark:border dark:border-stone-400" />
+              <LogoIcon className="h-6 w-6 dark:scale-110 dark:rounded dark:border dark:border-stone-400" />
             </Link>
           </div>
           <div className="grid gap-1">
@@ -209,7 +208,7 @@ export default function Nav({ children }: { children: ReactNode }) {
                 href={href}
                 className={`flex items-center space-x-3 ${
                   isActive ? "bg-stone-200 text-black dark:bg-stone-700" : ""
-                } rounded-lg px-2 py-1.5 transition-all duration-150 ease-in-out hover:bg-stone-200 active:bg-stone-300 dark:text-white dark:hover:bg-stone-700 dark:active:bg-stone-800`}
+                } rounded px-2 py-1.5 transition-all duration-150 ease-in-out hover:bg-stone-200 active:bg-stone-300 dark:text-white dark:hover:bg-stone-700 dark:active:bg-stone-800`}
               >
                 {icon}
                 <span className="text-sm font-medium">{name}</span>
@@ -225,7 +224,7 @@ export default function Nav({ children }: { children: ReactNode }) {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between rounded-lg px-2 py-1.5 transition-all duration-150 ease-in-out hover:bg-stone-200 active:bg-stone-300 dark:text-white dark:hover:bg-stone-700 dark:active:bg-stone-800"
+                className="flex items-center justify-between rounded px-2 py-1.5 transition-all duration-150 ease-in-out hover:bg-stone-200 active:bg-stone-300 dark:text-white dark:hover:bg-stone-700 dark:active:bg-stone-800"
               >
                 <div className="flex items-center space-x-3">
                   {icon}

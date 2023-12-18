@@ -59,31 +59,31 @@ export interface Database {
       }
       profiles: {
         Row: {
+          avatar_path: string | null
           beehiiv_api_key: string | null
           billing_address: Json | null
           email: string | null
           id: string
-          onboarding_finished: boolean
           payment_method: Json | null
           updated_at: string | null
           username: string | null
         }
         Insert: {
+          avatar_path?: string | null
           beehiiv_api_key?: string | null
           billing_address?: Json | null
           email?: string | null
           id: string
-          onboarding_finished?: boolean
           payment_method?: Json | null
           updated_at?: string | null
           username?: string | null
         }
         Update: {
+          avatar_path?: string | null
           beehiiv_api_key?: string | null
           billing_address?: Json | null
           email?: string | null
           id?: string
-          onboarding_finished?: boolean
           payment_method?: Json | null
           updated_at?: string | null
           username?: string | null
@@ -104,14 +104,15 @@ export interface Database {
           beehiiv_publication_id: string
           created_at: string
           custom_domain: string | null
-          font: string
           id: string
-          logo_url: string | null
+          logo_path: string
           name: string
           not_found_content: string | null
-          og_image_url: string
+          og_image_path: string
           profile_id: string
           subdomain: string
+          template: Database["public"]["Enums"]["template_types"]
+          theme: Json | null
           updated_at: string | null
         }
         Insert: {
@@ -119,14 +120,15 @@ export interface Database {
           beehiiv_publication_id?: string
           created_at?: string
           custom_domain?: string | null
-          font?: string
           id?: string
-          logo_url?: string | null
+          logo_path: string
           name?: string
           not_found_content?: string | null
-          og_image_url: string
+          og_image_path: string
           profile_id: string
           subdomain?: string
+          template?: Database["public"]["Enums"]["template_types"]
+          theme?: Json | null
           updated_at?: string | null
         }
         Update: {
@@ -134,14 +136,15 @@ export interface Database {
           beehiiv_publication_id?: string
           created_at?: string
           custom_domain?: string | null
-          font?: string
           id?: string
-          logo_url?: string | null
+          logo_path?: string
           name?: string
           not_found_content?: string | null
-          og_image_url?: string
+          og_image_path?: string
           profile_id?: string
           subdomain?: string
+          template?: Database["public"]["Enums"]["template_types"]
+          theme?: Json | null
           updated_at?: string | null
         }
         Relationships: [
@@ -261,7 +264,7 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      template_types: "default" | "modern" | "brutalist"
     }
     CompositeTypes: {
       [_ in never]: never

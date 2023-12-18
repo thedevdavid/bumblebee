@@ -17,7 +17,7 @@ export default function SiteCard({ data }: { data: Tables<"publications"> }) {
           width={500}
           height={400}
           className="h-44 object-cover"
-          src={data.og_image_url ?? "/placeholder.png"}
+          src={data.og_image_path ?? "/placeholder.png"}
           placeholder="blur"
           blurDataURL={placeholderBlurhash}
         />

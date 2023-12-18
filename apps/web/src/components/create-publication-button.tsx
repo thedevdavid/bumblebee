@@ -20,7 +20,7 @@ import {
 } from "@bumblebee/ui";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
-import { FormResponse } from "../types";
+import { BeehivePublications, FormResponse } from "../types";
 import { SubmitButton } from "./submit-button";
 
 const initialState: FormResponse = {
@@ -29,10 +29,13 @@ const initialState: FormResponse = {
 };
 
 export default function CreatePublicationButton({
-  beehiiv_api_key,
+  publications,
+  userId,
 }: {
-  beehiiv_api_key: string;
+  publications?: BeehivePublications["data"];
+  userId: string;
 }) {
+  // const addPublicationWithId = addNewPublication.bind(null, userId);
   const [state, formAction] = useFormState(addNewPublication, initialState);
   const [data, setData] = useState({
     publication: "",
@@ -87,14 +90,14 @@ export default function CreatePublicationButton({
                 <Label htmlFor="name" className="text-right">
                   Choose from your Beehiiv publications
                 </Label>
-                <Select>
+                <Select disabled={true}>
                   <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Your Awesome Newsletter" />
                   </SelectTrigger>
                   <SelectContent>
-                    {options?.map((option) => (
-                      <SelectItem value={option.value}>
-                        {option.label}
+                    {publications?.map((publication) => (
+                      <SelectItem value={publication.id}>
+                        {publication.name}
                       </SelectItem>
                     ))}
                   </SelectContent>

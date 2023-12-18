@@ -7,7 +7,7 @@ import { Providers } from "@/components/providers";
 
 // import "@bumblebee/ui/dist/index.css";
 import { cn } from "@/lib/utils";
-import siteMetadata from "@/lib/metadata";
+import siteMetadata, { BASE_URL } from "@/lib/metadata";
 import { BackTopButton } from "@/components/back-to-top";
 
 const inter = Inter({
@@ -17,6 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: siteMetadata.title,
   description: siteMetadata.description,
 };
