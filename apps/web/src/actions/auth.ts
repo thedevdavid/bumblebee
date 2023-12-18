@@ -41,6 +41,7 @@ export const signInWithMagicLink = async (
   });
 
   if (error) {
+    console.log("autherror");
     console.log(error);
     return { success: false, message: "Could not authenticate user." };
   }

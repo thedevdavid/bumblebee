@@ -34,10 +34,10 @@ export async function middleware(request: NextRequest) {
     searchParams.length > 0 ? `?${searchParams}` : ""
   }`;
 
+  const { data } = await supabase.auth.getSession(); // refresh session token
+
   // rewrites for app pages
   if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
-    const { data } = await supabase.auth.getSession(); // refresh session token
-
     if (!data.session && !path.startsWith("/auth")) {
       return NextResponse.redirect(new URL("/auth/signin", request.url));
     } else if (data.session) {
@@ -45,9 +45,9 @@ export async function middleware(request: NextRequest) {
         return NextResponse.rewrite(new URL("/", request.url));
       }
     }
-    return NextResponse.rewrite(
-      new URL(`/app${path === "/" ? "" : path}`, request.url),
-    );
+    // return NextResponse.rewrite(
+    //   new URL(`/app${path === "/" ? "" : path}`, request.url),
+    // );
   }
 
   // rewrite root application to `/home` folder

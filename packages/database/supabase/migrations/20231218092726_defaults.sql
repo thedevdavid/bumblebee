@@ -26,17 +26,18 @@ alter table "public"."publications" validate constraint "publications_profile_id
 
 set check_function_bodies = off;
 
-CREATE OR REPLACE FUNCTION public.handle_new_user()
- RETURNS trigger
- LANGUAGE plpgsql
- SECURITY DEFINER
-AS $function$
+CREATE OR REPLACE FUNCTION "public"."handle_new_user"() RETURNS "trigger"
+    LANGUAGE "plpgsql" SECURITY DEFINER
+    AS $$
 begin
-  insert into public.profiles (id, email, avatar_url)
-  values (new.id, new.raw_user_meta_data->>'email', new.raw_user_meta_data->>'avatar_url');
+  insert into public.profiles (id, email)
+  values (new.id, new.raw_user_meta_data->>'email');
   return new;
 end;
-$function$
-;
+$$;
 
+ALTER FUNCTION "public"."handle_new_user"() OWNER TO "postgres";
 
+GRANT ALL ON FUNCTION "public"."handle_new_user"() TO "anon";
+GRANT ALL ON FUNCTION "public"."handle_new_user"() TO "authenticated";
+GRANT ALL ON FUNCTION "public"."handle_new_user"() TO "service_role";
