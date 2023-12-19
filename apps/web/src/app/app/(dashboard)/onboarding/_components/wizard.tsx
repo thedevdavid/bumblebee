@@ -131,7 +131,7 @@ export function Wizard({ userId }: { userId: string }) {
                 }
                 // className={`${
                 //   step > 4 ? "pointer-events-none opacity-50" : ""
-                // } bg duration-350 flex items-center justify-center rounded-full bg-blue-500 px-3.5 py-1.5 font-medium tracking-tight text-white transition hover:bg-blue-600 active:bg-blue-700`}
+                // } bg duration-350 flex items-center justify-center rounded bg-blue-500 px-3.5 py-1.5 font-medium tracking-tight text-white transition hover:bg-blue-600 active:bg-blue-700`}
               >
                 Continue
               </Button>

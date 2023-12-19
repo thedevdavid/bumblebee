@@ -56,9 +56,7 @@ export default function CreatePublicationButton({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="rounded-lg border border-black bg-black px-4 py-1.5 text-sm font-medium text-white transition-all hover:bg-white hover:text-black active:bg-stone-100 dark:border-stone-700 dark:hover:border-stone-200 dark:hover:bg-black dark:hover:text-white dark:active:bg-stone-800">
-          Add Publication
-        </Button>
+        <Button>Import Publication</Button>
       </DialogTrigger>
       <DialogContent>
         <form
@@ -77,60 +75,72 @@ export default function CreatePublicationButton({
             //   }
             // })
           }
-          className="w-full rounded-md bg-white dark:bg-black md:max-w-md md:border md:border-stone-200 md:shadow dark:md:border-stone-700"
         >
           <DialogHeader>
-            <DialogTitle>Are you sure absolutely sure?</DialogTitle>
+            <DialogTitle>Import Beehiiv publication</DialogTitle>
             <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              Note: This will not create a new publication on Beehiiv.
             </DialogDescription>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  Choose from your Beehiiv publications
-                </Label>
-                <Select disabled={true}>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Your Awesome Newsletter" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {publications?.map((publication) => (
-                      <SelectItem value={publication.id}>
-                        {publication.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="subdomain" className="text-right">
-                  Subdomain
-                </Label>
-                <div className="flex w-full max-w-md">
-                  <Input
-                    name="subdomain"
-                    id="subdomain"
-                    type="text"
-                    placeholder="subdomain"
-                    value={data.subdomain}
-                    onChange={(e) =>
-                      setData({ ...data, subdomain: e.target.value })
-                    }
-                    autoCapitalize="off"
-                    pattern="[a-zA-Z0-9\-]+" // only allow lowercase letters, numbers, and dashes
-                    maxLength={32}
-                    required
-                    defaultValue="@peduarte"
-                    className="col-span-3"
-                  />
-                  <div className="flex items-center rounded-r-lg border border-l-0 border-stone-200 bg-stone-100 px-3 text-sm dark:border-stone-600 dark:bg-stone-800 dark:text-stone-400">
-                    .{process.env.NEXT_PUBLIC_ROOT_DOMAIN}
-                  </div>
+          </DialogHeader>
+          <div className="my-4 space-y-2">
+            <div className="">
+              <Label htmlFor="publication">
+                Choose from your Beehiiv publications
+              </Label>
+              <Select
+                disabled={!publications}
+                value={data.publication}
+                onValueChange={(value) =>
+                  setData({ ...data, publication: value })
+                }
+              >
+                <SelectTrigger className="w-full rounded">
+                  <SelectValue
+                    aria-label={data.publication}
+                    placeholder="Awesome Newsletter"
+                  >
+                    {data.publication}
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent className="w-full rounded">
+                  {publications?.map((publication) => (
+                    <SelectItem value={publication.id}>
+                      {publication.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="subdomain" className="text-right">
+                Subdomain
+              </Label>
+              <div className="flex w-full max-w-md">
+                <Input
+                  name="subdomain"
+                  id="subdomain"
+                  type="text"
+                  placeholder="subdomain"
+                  value={data.subdomain}
+                  onChange={(e) =>
+                    setData({ ...data, subdomain: e.target.value })
+                  }
+                  autoCapitalize="off"
+                  pattern="[a-zA-Z0-9\-]+" // only allow lowercase letters, numbers, and dashes
+                  maxLength={32}
+                  required
+                  disabled={!data.publication}
+                  className="w-full rounded-l rounded-r-none border border-r-0"
+                />
+                <div className="flex items-center rounded-l-none rounded-r border border-l-0 bg-stone-100 px-3 dark:bg-stone-800">
+                  .{process.env.NEXT_PUBLIC_ROOT_DOMAIN}
                 </div>
               </div>
+              <p className="text-muted-foreground text-sm">
+                You can change this to your own custom domain later in settings.
+              </p>
             </div>
-          </DialogHeader>
+          </div>
           <DialogFooter>
             <SubmitButton>Add Publication</SubmitButton>
           </DialogFooter>

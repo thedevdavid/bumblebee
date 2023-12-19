@@ -45,9 +45,9 @@ export async function middleware(request: NextRequest) {
         return NextResponse.rewrite(new URL("/", request.url));
       }
     }
-    // return NextResponse.rewrite(
-    //   new URL(`/app${path === "/" ? "" : path}`, request.url),
-    // );
+    return NextResponse.rewrite(
+      new URL(`/app${path === "/" ? "" : path}`, request.url),
+    );
   }
 
   // rewrite root application to `/home` folder
