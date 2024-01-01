@@ -20,6 +20,19 @@ export const getUserSession = async () => {
   return session;
 };
 
+export const getUserProfile = async (userId: string) => {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+
+  const { data } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", userId)
+    .single();
+
+  return data;
+};
+
 export const getCurrentUserWithProfile = async () => {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
@@ -37,15 +50,24 @@ export const getCurrentUserWithProfile = async () => {
   return { data, userData: userData.user };
 };
 
-export const getUserProfile = async (userId: string) => {
+export const getCurrentUserPublications = async () => {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
-  const { data } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", userId)
-    .single();
+  const userRes = await getCurrentUserWithProfile();
 
-  return data;
+  if (userRes?.userData?.id) {
+    if (userRes.data.beehiiv_api_key) {
+      const { data, error } = await supabase
+        .from("publications")
+        .select("*")
+        .eq("profile_id", userRes?.userData?.id);
+      if (error) {
+        console.log("getCurrentUserWithProfileAndPublications error");
+        console.log(error);
+        return null;
+      }
+      return { data, beehiivApiKey: userRes.data.beehiiv_api_key };
+    }
+  }
 };

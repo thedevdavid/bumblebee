@@ -12,6 +12,8 @@ export async function middleware(request: NextRequest) {
   });
   const { supabase, response } = createMiddlewareClient(request, cleanResponse);
 
+  const { data } = await supabase.auth.getSession(); // refresh session token
+
   const url = request.nextUrl;
 
   let hostname = request.headers
@@ -34,8 +36,6 @@ export async function middleware(request: NextRequest) {
     searchParams.length > 0 ? `?${searchParams}` : ""
   }`;
 
-  const { data } = await supabase.auth.getSession(); // refresh session token
-
   // rewrites for app pages
   if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
     if (!data.session && !path.startsWith("/auth")) {
@@ -47,6 +47,12 @@ export async function middleware(request: NextRequest) {
     }
     return NextResponse.rewrite(
       new URL(`/app${path === "/" ? "" : path}`, request.url),
+      {
+        headers: {
+          "x-pathname": path,
+          "x-project": path.split("/")[1],
+        },
+      },
     );
   }
 
@@ -57,13 +63,30 @@ export async function middleware(request: NextRequest) {
   ) {
     return NextResponse.rewrite(
       new URL(`/home${path === "/" ? "" : path}`, request.url),
+      {
+        headers: {
+          "x-pathname": path,
+          "x-project": path.split("/")[1],
+        },
+      },
     );
   }
 
-  // rewrite everything else to `/[domain]/[slug] dynamic route
-  return NextResponse.rewrite(new URL(`/${hostname}${path}`, request.url));
-
   // todo: check supabase middleware res
+  console.log("supabase response");
+  console.log(response);
+  console.log("next response");
+  console.log(NextResponse);
+
+  // rewrite everything else to `/[domain]/[slug] dynamic route
+  return NextResponse.rewrite(new URL(`/${hostname}${path}`, request.url), {
+    headers: {
+      "x-pathname": path,
+      "x-project": hostname.split(".")[0],
+      "x-powered-by": "Bumblebee",
+    },
+  });
+
   // return response;
 }
 

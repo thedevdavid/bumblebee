@@ -2,7 +2,7 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { Toaster } from "sonner";
+import { Toaster } from "@bumblebee/ui";
 import { Providers } from "@/components/providers";
 
 // import "@bumblebee/ui/dist/index.css";

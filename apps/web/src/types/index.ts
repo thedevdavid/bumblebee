@@ -94,3 +94,32 @@ export type BeehivePublications = {
   total_results: number;
   total_pages: number;
 };
+
+export type BeehivePublicationPosts = {
+  createdAt: any;
+  slug: string;
+  image: any;
+  imageBlurhash: any;
+  placeholderBlurhash: any;
+  title: string;
+  description: string;
+  limit: number;
+  page: number;
+  total_results: number;
+  total_pages: number;
+};
+
+export type BeehivePublicationPost = {
+  site: any;
+  createdAt: any;
+  slug: string;
+  image: any;
+  imageBlurhash: any;
+  placeholderBlurhash: any;
+  title: string;
+  description: string;
+  limit: number;
+  page: number;
+  total_results: number;
+  total_pages: number;
+};
