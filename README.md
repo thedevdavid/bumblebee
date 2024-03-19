@@ -1,11 +1,10 @@
+> **Note**
+>
+> **This project is massively in progress! DO NOT use it! It won't work.**
+
 # Bumblebee
 
 Your bees deserve a nicer hive. Custom Beehiiv newsletter website builder multi-tenant SaaS.
-
-> **Note**
->
-> Originally built on [Supabase Launch Week X Hackathon](https://supabase.com).
-> I didn't finish it on time, but I guess it's a useful product, so I'll keep working on it.
 
 Built with
 
