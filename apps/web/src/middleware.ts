@@ -10,10 +10,10 @@ export async function middleware(request: NextRequest) {
       headers: request.headers,
     },
   });
-  const { supabase, response } = createMiddlewareClient(request, cleanResponse);
+  let { supabase, response } = createMiddlewareClient(request, cleanResponse);
 
   const { data } = await supabase.auth.getUser(); // refresh session token
-  
+
   response = NextResponse.rewrite(new URL(`/home`, request.url));
   return response;
 
@@ -41,9 +41,9 @@ export async function middleware(request: NextRequest) {
 
   // rewrites for app pages
   if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
-    if (!data.session && !path.startsWith("/auth")) {
+    if (!data.user && !path.startsWith("/auth")) {
       return NextResponse.redirect(new URL("/auth/signin", request.url));
-    } else if (data.session) {
+    } else if (data.user) {
       if (path.startsWith("/auth")) {
         return NextResponse.rewrite(new URL("/", request.url));
       }
