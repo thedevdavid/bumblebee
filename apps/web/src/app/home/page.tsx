@@ -11,9 +11,10 @@ export default function HomePage() {
         <span className="text-yellow-400">hiiv</span>
       </h1>
       <p>Bumblebee</p>
-      <Button asChild>
+      <p>Nothing to see here yet.</p>
+      {/** <Button asChild>
         <Link href={APP_DOMAIN}>Login</Link>
-      </Button>
+      </Button> */}
     </div>
   );
 }
