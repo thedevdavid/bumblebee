@@ -12,7 +12,10 @@ export async function middleware(request: NextRequest) {
   });
   const { supabase, response } = createMiddlewareClient(request, cleanResponse);
 
-  const { data } = await supabase.auth.getSession(); // refresh session token
+  const { data } = await supabase.auth.getUser(); // refresh session token
+  
+  response = NextResponse.rewrite(new URL(`/home`, request.url));
+  return response;
 
   const url = request.nextUrl;
 
